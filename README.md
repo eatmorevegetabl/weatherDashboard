@@ -11,3 +11,4 @@ The weather dashboard displays a city's name, current date, temperature, conditi
 ## Link
 
 Link to the completed webpage:
+https://eatmorevegetabl.github.io/weatherDashboard/
