@@ -192,7 +192,7 @@ button:hover {
 }
 
 .forecast {
-  background-color: rgba(24, 24, 27, 0.8);
+  background-color: #000000d0;
   padding: 25px;
   position: fixed;
   bottom: 0%;
@@ -217,13 +217,21 @@ button:hover {
 
 .forecast .forecast-item .day {
   padding: 5px 15px;
-  background-color: #3c3c44;
+  background-color: #7c7c7c2b;
   border-radius: 50px;
   text-align: center;
 }
 
 .forecast .forecast-item .temp {
   font-weight: 100;
+}
+
+.forecast.loading {
+  visibility: hidden;
+}
+
+.forecast.loading:after {
+  visibility: visible;
 }
 
 /* Responsive Screen */

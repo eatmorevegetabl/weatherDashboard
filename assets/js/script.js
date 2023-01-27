@@ -45,68 +45,76 @@ document
     }
   });
 
-// var button = document.querySelector('.button');
-// var inputValue = document.querySelector('.inputValue');
-// var cityName = document.querySelector('.city-name');
-// var date = document.querySelector('.date');
-// var conditions = document.querySelector('.conditions');
-// var temperature = document.querySelector('.temperature');
-// var humidity = document.querySelector('.humidity');
-// var windSpeed = document.querySelector('.wind-speed');
+//Forecast
 
-// var day1 = document.querySelector('.day-1');
-// var day2 = document.querySelector('.day-2');
-// var day3 = document.querySelector('.day-3');
-// var day4 = document.querySelector('.day-4');
-// var day5 = document.querySelector('.day-5');
+let forecast = {
+  apiKey: 'e4455fb88575d6b953035ab71e6e15ab',
+  getForecastData: function (city) {
+    fetch(
+      'https://api.openweathermap.org/data/2.5/forecast?q=' +
+        city +
+        '&units=imperial&exclude=current,minutely,hourly,alerts&APPID=' +
+        this.apiKey
+    )
+      .then((response) => response.json())
+      .then((data) => this.displayForecast(data));
+  },
+  displayForecast: function (data) {
+    var tempDay1AM = data.list[7].main.temp;
+    var iconDay1AM = data.list[7].weather[0].icon;
+    var tempDay1PM = data.list[11].main.temp;
+    var tempDay2AM = data.list[15].main.temp;
+    var iconDay2AM = data.list[15].weather[0].icon;
+    var tempDay2PM = data.list[19].main.temp;
+    var tempDay3AM = data.list[23].main.temp;
+    var iconDay3AM = data.list[23].weather[0].icon;
+    var tempDay3PM = data.list[27].main.temp;
+    var tempDay4AM = data.list[31].main.temp;
+    var iconDay4AM = data.list[31].weather[0].icon;
+    var tempDay4PM = data.list[35].main.temp;
 
-// //localStorage.getItem("City") = document.querySelector('.btn');
+    document.querySelector('#day1-icon').src =
+      'http://openweathermap.org/img/wn/' + iconDay1AM + '@2x.png';
+    document.querySelector('#day1-am').innerText =
+      'Day - ' + tempDay1AM + ' °F';
+    document.querySelector('#day1-pm').innerText =
+      'Night - ' + tempDay1PM + ' °F';
 
-// button.addEventListener('click', function () {
-//   fetch(
-//     'https://api.openweathermap.org/data/2.5/weather?q=' +
-//       inputValue.value +
-//       '&APPID=e4455fb88575d6b953035ab71e6e15ab&units=imperial'
-//   )
-//     .then((response) => response.json())
-//     .then((data) => {
-//       var cityValue = data['name'];
-//       var condValue = data['weather']['0']['description'];
-//       var tempValue = data['main']['temp'];
-//       var humdValue = data['main']['humidity'];
-//       var windValue = data['wind']['speed'];
+    document.querySelector('#day2-icon').src =
+      'http://openweathermap.org/img/wn/' + iconDay2AM + '@2x.png';
+    document.querySelector('#day2-am').innerText =
+      'Day - ' + tempDay2AM + ' °F';
+    document.querySelector('#day2-pm').innerText =
+      'Night - ' + tempDay2PM + ' °F';
 
-//       cityName.innerHTML = cityValue;
-//       temperature.innerHTML = 'Temperature: ' + tempValue + ' °F';
-//       conditions.innerHTML = 'Conditions: ' + condValue;
-//       humidity.innerHTML = 'Humidity: ' + humdValue + ' %';
-//       windSpeed.innerHTML = 'Wind Speed: ' + windValue + ' mph';
-//       date.innerHTML = moment().format('MMMM Do YYYY');
-//     })
+    document.querySelector('#day3-icon').src =
+      'http://openweathermap.org/img/wn/' + iconDay3AM + '@2x.png';
+    document.querySelector('#day3-am').innerText =
+      'Day - ' + tempDay3AM + ' °F';
+    document.querySelector('#day3-pm').innerText =
+      'Night - ' + tempDay3PM + ' °F';
 
-//     .catch((err) => alert('City Name Invalid!'));
-//   localStorage.setItem('City', inputValue.value);
-//   getForecastData();
-// });
+    document.querySelector('#day4-icon').src =
+      'http://openweathermap.org/img/wn/' + iconDay4AM + '@2x.png';
+    document.querySelector('#day4-am').innerText =
+      'Day - ' + tempDay4AM + ' °F';
+    document.querySelector('#day4-pm').innerText =
+      'Night - ' + tempDay4PM + ' °F';
+    document.querySelector('.forecast').classList.remove('loading');
+  },
+  search: function () {
+    this.getForecastData(document.querySelector('.search-bar').value);
+  },
+};
 
-// function getForecastData() {
-//   fetch(
-//     'https://api.openweathermap.org/data/2.5/forecast?q=' +
-//       inputValue.value +
-//       '&APPID=e4455fb88575d6b953035ab71e6e15ab&units=imperial'
-//   )
-//     .then((response) => response.json())
-//     .then((data) => {
-//       var day1Value = data['list']['7']['main']['temp'];
-//       var day2Value = data['list']['15']['main']['temp'];
-//       var day3Value = data['list']['23']['main']['temp'];
-//       var day4Value = data['list']['31']['main']['temp'];
-//       var day5Value = data['list']['39']['main']['temp'];
+document.querySelector('.search button').addEventListener('click', function () {
+  forecast.search();
+});
 
-//       day1.innerHTML = 'Day 1: ' + day1Value + ' °F';
-//       day2.innerHTML = 'Day 2: ' + day2Value + ' °F';
-//       day3.innerHTML = 'Day 3: ' + day3Value + ' °F';
-//       day4.innerHTML = 'Day 4: ' + day4Value + ' °F';
-//       day5.innerHTML = 'Day 5: ' + day5Value + ' °F';
-//     });
-// }
+document
+  .querySelector('.search-bar')
+  .addEventListener('keyup', function (event) {
+    if (event.key == 'Enter') {
+      forecast.search();
+    }
+  });
