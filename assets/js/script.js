@@ -16,7 +16,7 @@ let weather = {
     const { temp, humidity } = data.main;
     const { speed } = data.wind;
     document.querySelector('.city').innerText = name;
-    document.querySelector('.temp').innerText = temp + ' °F';
+    document.querySelector('.current-temp').innerText = temp + ' °F';
     document.querySelector('.icon').src =
       'http://openweathermap.org/img/wn/' + icon + '@2x.png';
     document.querySelector('.conditions').innerText = description;
@@ -60,46 +60,57 @@ let forecast = {
       .then((data) => this.displayForecast(data));
   },
   displayForecast: function (data) {
-    var tempDay1AM = data.list[7].main.temp;
-    var iconDay1AM = data.list[7].weather[0].icon;
-    var tempDay1PM = data.list[11].main.temp;
-    var tempDay2AM = data.list[15].main.temp;
-    var iconDay2AM = data.list[15].weather[0].icon;
-    var tempDay2PM = data.list[19].main.temp;
-    var tempDay3AM = data.list[23].main.temp;
-    var iconDay3AM = data.list[23].weather[0].icon;
-    var tempDay3PM = data.list[27].main.temp;
-    var tempDay4AM = data.list[31].main.temp;
-    var iconDay4AM = data.list[31].weather[0].icon;
-    var tempDay4PM = data.list[35].main.temp;
+    var day1 = data.list[3].dt_txt;
+    var iconDay1 = data.list[3].weather[0].icon;
+    var tempDay1 = data.list[3].main.temp;
+    var day2 = data.list[11].dt_txt;
+    var iconDay2 = data.list[11].weather[0].icon;
+    var tempDay2 = data.list[11].main.temp;
+    var day3 = data.list[19].dt_txt;
+    var tempDay3 = data.list[19].main.temp;
+    var iconDay3 = data.list[19].weather[0].icon;
+    var day4 = data.list[27].dt_txt;
+    var tempDay4 = data.list[27].main.temp;
+    var iconDay4 = data.list[27].weather[0].icon;
+    var day5 = data.list[35].dt_txt;
+    var tempDay5 = data.list[35].main.temp;
+    var iconDay5 = data.list[35].weather[0].icon;
 
+    document.querySelector('#day1').innerText = window
+      .moment(day1)
+      .format('ddd h a');
     document.querySelector('#day1-icon').src =
-      'http://openweathermap.org/img/wn/' + iconDay1AM + '@2x.png';
-    document.querySelector('#day1-am').innerText =
-      'Day - ' + tempDay1AM + ' °F';
-    document.querySelector('#day1-pm').innerText =
-      'Night - ' + tempDay1PM + ' °F';
+      'http://openweathermap.org/img/wn/' + iconDay1 + '@2x.png';
+    document.querySelector('#day1-am').innerText = tempDay1 + ' °F';
 
+    document.querySelector('#day2').innerText = window
+      .moment(day2)
+      .format('ddd h a');
     document.querySelector('#day2-icon').src =
-      'http://openweathermap.org/img/wn/' + iconDay2AM + '@2x.png';
-    document.querySelector('#day2-am').innerText =
-      'Day - ' + tempDay2AM + ' °F';
-    document.querySelector('#day2-pm').innerText =
-      'Night - ' + tempDay2PM + ' °F';
+      'http://openweathermap.org/img/wn/' + iconDay2 + '@2x.png';
+    document.querySelector('#day2-am').innerText = tempDay2 + ' °F';
 
+    document.querySelector('#day3').innerText = window
+      .moment(day3)
+      .format('ddd h a');
     document.querySelector('#day3-icon').src =
-      'http://openweathermap.org/img/wn/' + iconDay3AM + '@2x.png';
-    document.querySelector('#day3-am').innerText =
-      'Day - ' + tempDay3AM + ' °F';
-    document.querySelector('#day3-pm').innerText =
-      'Night - ' + tempDay3PM + ' °F';
+      'http://openweathermap.org/img/wn/' + iconDay3 + '@2x.png';
+    document.querySelector('#day3-am').innerText = tempDay3 + ' °F';
 
+    document.querySelector('#day4').innerText = window
+      .moment(day4)
+      .format('ddd h a');
     document.querySelector('#day4-icon').src =
-      'http://openweathermap.org/img/wn/' + iconDay4AM + '@2x.png';
-    document.querySelector('#day4-am').innerText =
-      'Day - ' + tempDay4AM + ' °F';
-    document.querySelector('#day4-pm').innerText =
-      'Night - ' + tempDay4PM + ' °F';
+      'http://openweathermap.org/img/wn/' + iconDay4 + '@2x.png';
+    document.querySelector('#day4-am').innerText = tempDay4 + ' °F';
+
+    document.querySelector('#day5').innerText = window
+      .moment(day5)
+      .format('ddd h a');
+    document.querySelector('#day5-icon').src =
+      'http://openweathermap.org/img/wn/' + iconDay5 + '@2x.png';
+    document.querySelector('#day5-am').innerText = tempDay5 + ' °F';
+
     document.querySelector('.forecast').classList.remove('loading');
   },
   search: function () {

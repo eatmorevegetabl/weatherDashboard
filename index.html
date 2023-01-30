@@ -29,7 +29,7 @@
         </div>
         <div class="weather loading">
             <div class="city"></div>
-            <div class="temp"></div>
+            <div class="current-temp"></div>
             <div class="flex">
                 <img alt="weather icon" class="icon" />
                 <div class="conditions"></div>
@@ -41,30 +41,34 @@
 
     <div class="forecast loading">
         <div class="forecast-item">
-            <div class="day">Tues</div>
+            <div class="day" id="day1"></div>
             <img alt="weather icon" class="icon" id="day1-icon" />
             <div class="temp" id="day1-am">Day</div>
-            <div class="temp" id="day1-pm">Night</div>
         </div>
         <div class="forecast-item">
-            <div class="day">Wed</div>
+            <div class="day" id="day2"></div>
             <img alt="weather icon" class="icon" id="day2-icon" />
             <div class="temp" id="day2-am"></div>
-            <div class="temp" id="day2-pm"></div>
         </div>
         <div class="forecast-item">
-            <div class="day">Thu</div>
+            <div class="day" id="day3"></div>
             <img alt="weather icon" class="icon" id="day3-icon" />
             <div class="temp" id="day3-am"></div>
-            <div class="temp" id="day3-pm"></div>
         </div>
         <div class="forecast-item">
-            <div class="day">Fri</div>
+            <div class="day" id="day4"></div>
             <img alt="weather icon" class="icon" id="day4-icon" />
             <div class="temp" id="day4-am"></div>
-            <div class="temp" id="day4-pm"></div>
+        </div>
+        <div class="forecast-item">
+            <div class="day" id="day5"></div>
+            <img alt="weather icon" class="icon" id="day5-icon" />
+            <div class="temp" id="day5-am"></div>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="./assets/js/script.js"></script>
 </body>
 
